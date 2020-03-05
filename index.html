@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="checkInfomin.css"/ media="screen and (min-width: 320px)">
+		<link rel="stylesheet" type="text/css" href="checkInfo.css"/ media="screen and (min-width: 992px)">
+		<link rel="stylesheet" href="./plugin/layui/css/layui.css">
+		<script type="text/javascript" src="./plugin/layui/layui.js"></script>
+		<script src="./plugin/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+		<title>企业员工健康统计</title>
+	</head>
+	<body>
+		<div class="logodiv">
+			<img class="logoimg" src="image/logo.png"></img>
+		</div>
+		<!--表头-->
+		<div id="formTitle">
+			<img src="image/write.png"></img>
+			<div id="title">企业员工健康情况日统计表</div>
+			
+		</div>
+
+		<div id="questionnaire">
+			<!--表单-->
+			<form class="layui-form" action="" lay-filter="formTest">
+<!-- 			<label id="upodatetime"> 2020-02-12</label>
+ -->
+			<!-- <div class="layui-row">
+			  <label id="upodatetime" class="layui-col-md4 layui-col-md-offset11"> 2020-02-12</label>
+			</div> -->
+			<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label" id="upodatetime"> </label>
+					</div>
+					<div class="layui-col-md8">
+						&nbsp
+					</div>
+				</div>
+				
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">公司名称 &nbsp</label>
+					</div>
+					<div class="layui-col-md8">
+						<select class="company" name="company" id="company" lay-verify="required">
+							<option value=" ">请选择</option>
+							<option value="金控集团">金控集团</option>
+							<option value="相城数字科技" selected = "selected">相城数字科技</option>
+							<!-- <option value="82">园区审图</option>
+							<option value="83">园区测绘</option> -->
+<!-- 							<option value="84" selected="selected">风云科技</option>
+ -->					</select>
+						<!-- <input type="text" name="company" id="company" placeholder="公司名称" autocomplete="off" class="layui-input"> -->
+					</div>
+				</div>
+			</div>			
+
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">1.姓名 <span style="color: red">*</span> </label>
+					</div>
+					<div class="layui-col-md8">
+						<input type="text" name="name" id="name" required  lay-verify="required" placeholder="&nbsp姓名" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">2.手机号码 <span style="color: red">*</span></label>
+					</div>
+					<div class="layui-col-md8">
+						<input type="text" name="phoneNumber" id="phoneNumber" required  lay-verify="required" placeholder="&nbsp手机号码" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label" id="department">3.所属部门 &nbsp</label>
+					</div>
+					<div class="layui-col-md8">
+						<select name="department">
+							<option value=" ">请选择</option>
+							<option value="技术一部">技术一部</option>
+							<option value="技术二部">技术二部</option>
+							<!-- <option value="82">园区审图</option>
+							<option value="83">园区测绘</option> -->
+<!-- 							<option value="84" selected="selected">风云科技</option>
+ -->					</select>
+						<!-- <input type="text" name="department" id="department" placeholder="&nbsp所属部门" autocomplete="off" class="layui-input"> -->
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						
+						<label class="tx-form-label">4.复工情况 <span style="color: red">*</span></label>
+					</div>
+					<div class="layui-col-md8 mt10">
+						
+						<div class="setblock"><input type="radio" name="workSituation" id="workSituation" value="work" title="复工" checked></div>
+						<!-- <div class="setblock"><input type="radio" name="workSituation" id="workSituation" value="在家办公" title="在家办公"></div> -->
+						<div class="setblock"><input type="radio" name="workSituation" id="workSituation" value="leave" title="尚未返苏"></div>	
+						<div class=" setblock"><input type="radio" name="workSituation" id="workSituation" value="isolation" title="隔离期"></div>						
+						<!-- <div class="setblock"><input type="radio" name="workSituation" id="workSituation" value="病假、产假、年假" title="病假、产假、年假"></div>	 -->
+						<!-- <div class="setblock"><input type="radio" name="workSituation" id="workSituation" value="未排班/轮休/调休" title="未排班/轮休/调休"></div> -->
+						<!-- <div class="setblock"><input type="radio" name="workSituation" id="workSituation" value="待复工" title="待复工"></div> -->
+					</div>  
+				</div>
+			</div>
+			
+			<!-- <div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">5、员工类型</label>
+					</div>
+					<div class="layui-col-md8">
+						<select name="employeetype" id="employeetype" lay-verify="required">
+							<option value="1">请选择</option>
+							<option value="2">正式员工</option>
+							<option value="3">劳务派遣、实习生等</option>
+						</select>
+					</div>
+				</div>
+			</div>	 -->		
+
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">5.今日体温 <span style="color: red">*</span></label>
+					</div>
+					<div class="layui-col-md8">
+						<input type="text" name="temperature" id="temperature" required  lay-verify="required" placeholder="今日体温" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div>
+			
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">6.健康情况 <span style="color: red">*</span></label>
+					</div>
+					<div class="layui-col-md8 mt10">
+						<div style="display:block"><input type="radio" name="health" id="health" value="1" title="正常" checked></div>
+						<div style="display:inline-block"><input type="radio" name="health" id="health" value="0" title="出现发热、干咳、乏力等症状"></div>
+						<!-- <div style="display:inline-block">
+							<input type="text" name="zhengzhuang" placeholder="请填写具体症状" autocomplete="off" class="layui-input" id="zhengzhuang">
+						</div> -->
+					</div>
+				</div>
+			</div>
+
+			<div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">7.备注（1月10日之后发生须填写）</label>
+					</div>
+					<div class="layui-col-md8">
+						
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返湖北</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeWHDate" id="hb_date"  placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="hb_detailinput" class="yingcang">
+								<input type="text" name="hb_detail" id="hb_detail" placeholder="途经或往返湖北" autocomplete="off" class="layui-input bottom5"">
+							</div> -->
+							
+						</div>
+						
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返温州</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeWZDate" id="wz_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="wz_detailinput" class="yingcang">
+							<input type="text" name="wz_detail" placeholder="途经或往返温州详情" autocomplete="off" class="layui-input bottom5">
+							</div> -->
+						</div>
+						
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返台州</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeTZDate" id="tz_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="tz_detailinput" class="yingcang">
+							<input type="text" name="tz_detail" placeholder="途经或往返台州详情" autocomplete="off" class="layui-input bottom5">
+							</div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返杭州</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeHZDate" id="hz_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="hz_detailinput" class="yingcang">
+							<input type="text" name="hz_detail" placeholder="途经或往返杭州详情" autocomplete="off" class="layui-input bottom5">
+							</div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返宁波</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeNBDate" id="nb_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="nb_detailinput" class="yingcang">
+							<input type="text" name="nb_detail" placeholder="途经或往返宁波详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返信阳</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeXYDate" id="xy_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="xy_detailinput" class="yingcang">
+							<input type="text" name="xy_detail" placeholder="途经或往返信阳详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返驻马店</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeZMDDate" id="zmd_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="zmd_detailinput" class="yingcang">
+							<input type="text" name="zmd_detail" placeholder="途经或往返驻马店详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返合肥</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeHFDate" id="hf_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="hf_detailinput" class="yingcang">
+							<input type="text" name="hf_detail" placeholder="途经或往返合肥详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返阜阳</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeFYDate" id="fy_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="fy_detailinput" class="yingcang">
+							<input type="text" name="fy_detail" placeholder="途经或往返阜阳详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">途经或往返南昌</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="routeNCDate" id="nc_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="nc_detailinput" class="yingcang">
+							<input type="text" name="nc_detail" placeholder="途经或往返南昌详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">接触过疫区相关人员</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="contactPlaceDate" id="jiechu_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="jiechu_detailinput" class="yingcang">
+							<input type="text" name="jiechu_detail" placeholder="接触过以上疫区相关人员详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">与疑似或确诊人员接触</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="contactPeopleDate" id="yisi_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="yisi_detailinput" class="yingcang">
+							<input type="text" name="yisi_detail" placeholder="与疑似或确诊人员接触详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+						<!-- <div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121">仍在以上疫区未返回</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="renzai_date" id="renzai_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div> -->
+							<!-- <div id="renzai_detailinput" class="yingcang">
+							<input type="text" name="renzai_detail" placeholder="仍在以上疫区未返回详情" autocomplete="off" class="layui-input bottom5">
+						    </div> -->
+						<!-- </div> -->
+
+						<div class="layui-row">
+							<div class="layui-col-md4">
+							<label class="wb-form-label" style="background:#FF2121;color:white">其他地区返回苏州</label>
+							</div>
+							<div class="layui-col-md8 bottom5">
+								  <input type="text" name="backDate" id="qita_date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+							</div>
+							<!-- <div id="qita_detailinput" class="yingcang">
+							<input type="text" name="qita_detail" placeholder="其他地区返回苏州详情" autocomplete="off" class="layui-input bottom5"></div> -->
+						</div>
+
+					</div>
+				</div>
+			</div>	
+			<!-- <div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">9、已采取措施</label>
+					</div>
+					<div class="layui-col-md8">
+						<select name="measure" id="measure" lay-verify="required">
+							<option value="1">请选择</option>
+							<option value="2">医学观察中</option>
+							<option value="3">医学观察已解除</option>
+							<option value="4">居家观察中</option>
+							<option value="5">居家观察已解除</option>
+							<option value="6">集宿楼观察中</option>
+							<option value="7">集宿楼观察已解除</option>
+							<option value="8">社区确认无需隔离观察</option>
+							<option value="9">其他</option>
+					  </select>
+					</div>
+				</div>
+			</div>	 -->
+					
+			<!-- <div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">联系社区日期</label>
+					</div>
+					<div class="layui-col-md8">
+				       <input type="text" name="communityDate" id="dateshequ" lay-verify="date" placeholder="填写相关日期" autocomplete="off" readonly="true" class="layui-input cursordisable">
+					</div>
+				</div>
+			</div> -->	
+					
+			<!-- <div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">家庭住址</label>
+					</div>
+					<div class="layui-col-md8">
+						<input type="text" name="address" id="address" required  lay-verify="required" placeholder="家庭住址" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div> -->
+			
+			<!-- <div class="layui-form-item">
+				<div class="layui-row layui-col-space20">
+					<div class="layui-col-md3 labelparent">
+						<label class="tx-form-label">所属街道社区</label>
+					</div>
+					<div class="layui-col-md8">
+						<input type="text" name="street" id="street" required  lay-verify="required" placeholder="所属街道社区有" autocomplete="off" class="layui-input">
+					</div>
+				</div>
+			</div> -->
+
+			<div class="commitbutton" style="position:relative">
+				<div style="position:absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
+					<button class="layui-btn" lay-submit lay-filter="formDemo">提交</button>
+				</div>
+					
+			</div>
+			</form>
+		
+		</div>
+	
+<script src="checkInfo.js" type="text/javascript" charset="utf-8"></script>
+<script>
+
+	  layui.use(['form','layer','laydate'], function(){
+		  var form = layui.form;
+		  var layer = layui.layer;
+		  var laydate = layui.laydate;
+	  //初始化日期
+	  //初始化日期
+	 //  laydate.render({
+		// elem:'#hb_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#hb_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#hb_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#hb_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#hb_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+	 //  laydate.render({
+		// elem:'#wz_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#wz_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#wz_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#wz_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#wz_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+	 //  laydate.render({
+		// elem:'#tz_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#tz_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#tz_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#tz_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#tz_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+	 //  laydate.render({
+		// elem:'#hz_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#hz_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#hz_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#hz_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#hz_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+	 //  laydate.render({
+		// elem:'#nb_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#nb_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#nb_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#nb_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#nb_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+
+	 //  laydate.render({
+		// elem:'#xy_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#xy_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#xy_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#xy_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#xy_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+	 //  laydate.render({
+		// elem:'#zmd_date',
+		// ready: function(date){
+		// 	if(date){
+		// 			$("#zmd_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#zmd_detailinput").css('display','none');
+		// 		}
+		// },
+		// done: function(value, date, endDate){ //监听日期被切换
+		// 		if(value){
+		// 			$("#zmd_detailinput").css('display','block');
+		// 		}else{
+		// 		    $("#zmd_detailinput").css('display','none');
+		// 		}
+		// },
+		// trigger: 'click',
+		// });
+
+// laydate.render({
+// 		elem:'#hf_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#hf_detailinput").css('display','block');
+// 				}else{
+// 				    $("#hf_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#hf_detailinput").css('display','block');
+// 				}else{
+// 				    $("#hf_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+// laydate.render({
+// 		elem:'#fy_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#fy_detailinput").css('display','block');
+// 				}else{
+// 				    $("#fy_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#fy_detailinput").css('display','block');
+// 				}else{
+// 				    $("#fy_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+// laydate.render({
+// 		elem:'#nc_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#nc_detailinput").css('display','block');
+// 				}else{
+// 				    $("#nc_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#nc_detailinput").css('display','block');
+// 				}else{
+// 				    $("#nc_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+// laydate.render({
+// 		elem:'#jiechu_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#jiechu_detailinput").css('display','block');
+// 				}else{
+// 				    $("#jiechu_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#jiechu_detailinput").css('display','block');
+// 				}else{
+// 				    $("#jiechu_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+// laydate.render({
+// 		elem:'#yisi_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#yisi_detailinput").css('display','block');
+// 				}else{
+// 				    $("#yisi_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#yisi_detailinput").css('display','block');
+// 				}else{
+// 				    $("#yisi_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+// laydate.render({
+// 		elem:'#renzai_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#renzai_detailinput").css('display','block');
+// 				}else{
+// 				    $("#renzai_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#renzai_detailinput").css('display','block');
+// 				}else{
+// 				    $("#renzai_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+// laydate.render({
+// 		elem:'#qita_date',
+// 		ready: function(date){
+// 			if(date){
+// 					$("#qita_detailinput").css('display','block');
+// 				}else{
+// 				    $("#qita_detailinput").css('display','none');
+// 				}
+// 		},
+// 		done: function(value, date, endDate){ //监听日期被切换
+// 				if(value){
+// 					$("#qita_detailinput").css('display','block');
+// 				}else{
+// 				    $("#qita_detailinput").css('display','none');
+// 				}
+// 		},
+// 		trigger: 'click',
+// 		});
+
+		laydate.render({elem:'#hb_date',trigger: 'click'});
+		laydate.render({elem:'#wz_date',trigger: 'click'});
+		// laydate.render({elem:'#dateshequ',trigger: 'click'});
+
+		laydate.render({elem:'#tz_date',trigger: 'click'});
+		laydate.render({elem:'#hz_date',trigger: 'click'});
+		laydate.render({elem:'#nb_date',trigger: 'click'});
+
+		laydate.render({elem:'#xy_date',trigger: 'click'});
+		laydate.render({elem:'#zmd_date',trigger: 'click'});
+		laydate.render({elem:'#hf_date',trigger: 'click'});
+
+		laydate.render({elem:'#fy_date',trigger: 'click'});
+		laydate.render({elem:'#nc_date',trigger: 'click'});
+		laydate.render({elem:'#jiechu_date',trigger: 'click'});
+
+		laydate.render({elem:'#yisi_date',trigger: 'click'});
+		// laydate.render({elem:'#renzai_date',trigger: 'click'});
+		laydate.render({elem:'#qita_date',trigger: 'click'});
+  //监听提交
+  form.on('submit(formDemo)', function(data){
+
+	// console.log(data);
+	// console.log(data.field);
+	if (data.field.workSituation == "") {
+		data.field.workSituation = "work";
+	}
+	if (data.field.health == "") {
+		data.field.health = "1";
+	}
+	if (data.field.company =="") {
+		data.field.company = "相城数字科技";
+	}
+	// layer.msg(JSON.stringify(data.field));
+	console.log(data.field);
+	if (checkPhone()) {
+		$.ajax({  
+        type:'post',      
+        url:'http://localhost:8084/submitPaper',  
+        data:data.field,  
+
+        // headers: { 'Content-Type': 'application/json'},
+        dataType: "json",
+		// dataType:'JSONP',
+        // cache:false,  
+        // crossDomain: true;
+        
+        success:function(response){ 
+         if (response.code == "200") {
+         	dataStorage(data.field);
+	       alert("提交成功");
+       }
+        if (response.code == "500") {
+	       	alert("网络请求失败");
+       } 
+        if (response.code == "400") {
+        	alert("今天已提交");
+        }
+
+         }  
+    });
+		
+	} else {
+		alert("手机号码有误，请重填");  
+	}
+  
+	return false;
+  });
+});
+
+function dataStorage(data){
+localStorage.setItem('name', data.name);
+localStorage.setItem('company', data.company);
+localStorage.setItem('department', data.department);
+localStorage.setItem('phoneNumber', data.phoneNumber);
+// localStorage.setItem('temperature', data.temperature);
+localStorage.setItem('workSituation', data.workSituation);
+
+// localStorage.setItem('communityDate', data.communityDate);
+// localStorage.setItem('address', data.address);
+// localStorage.setItem('street', data.street);
+localStorage.setItem('health', data.health);
+// localStorage.setItem('employeetype', data.employeetype);
+
+localStorage.setItem('routeWHDate', data.routeWHDate);
+localStorage.setItem('routeWZDate', data.routeWZDate);
+localStorage.setItem('routeTZDate', data.routeTZDate);
+localStorage.setItem('routeHZDate', data.routeHZDate);
+localStorage.setItem('routeNBDate', data.routeNBDate);
+localStorage.setItem('routeXYDate', data.routeXYDate);
+localStorage.setItem('routeZMDDate', data.routeZMDDate);
+localStorage.setItem('routeHFDate', data.routeHFDate);
+localStorage.setItem('routeFYDate', data.routeFYDate);
+localStorage.setItem('routeNCDate', data.routeNCDate);
+localStorage.setItem('contactPlaceDate', data.contactPlaceDate);
+localStorage.setItem('contactPeopleDate', data.contactPeopleDate);
+localStorage.setItem('backDate', data.backDate);
+// localStorage.setItem('renzai_date', data.renzai_date)
+
+}
+
+function checkPhone(){ 
+    var phone = document.getElementById('phoneNumber').value;
+    if(!(/^[1][3,4,5,7,8][0-9]{9}$/.test(phone))){ 
+        
+        return false; 
+    } else {
+    	return true;
+    }
+}
+
+</script>
+	</body>
+</html>
